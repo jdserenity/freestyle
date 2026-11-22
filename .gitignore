@@ -12,6 +12,9 @@ dist/
 build/
 coverage/
 
+# Cached CMUdict download (regenerate with npm run generate-words)
+data/
+
 # Python
 .venv/
 __pycache__/

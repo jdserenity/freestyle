@@ -1,0 +1,11 @@
+{
+  "name": "freestyle",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/**/*.test.mjs",
+    "generate-words": "node scripts/generate-words.mjs",
+    "dev": "npx --yes serve public -p 5173",
+    "deploy": "npx wrangler pages deploy public --project-name freestyle"
+  }
+}
