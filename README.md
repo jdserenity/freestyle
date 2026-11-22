@@ -11,4 +11,4 @@ npm run dev              # http://localhost:5173
 npm run deploy           # Cloudflare Pages
 ```
 
-First deploy may need: `npx wrangler login` then `npx wrangler pages project create freestyle`.
+Live: https://freestyle-7o1.pages.dev

@@ -15,6 +15,9 @@ coverage/
 # Cached CMUdict download (regenerate with npm run generate-words)
 data/
 
+# Wrangler local state
+.wrangler/
+
 # Python
 .venv/
 __pycache__/
