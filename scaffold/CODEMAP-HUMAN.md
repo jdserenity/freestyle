@@ -6,9 +6,9 @@ Map of this project's codebase for the maintainer: which files do what, how data
 
 ```
 public/
-  index.html           # PWA shell: word + four buttons
-  styles.css           # orange full-screen layout
-  app.js               # loads words.json, wires buttons, registers SW
+  index.html           # PWA shell: word hitbox (random) + four buttons
+  styles.css           # orange full-screen layout; white spaced buttons
+  app.js               # loads words.json, pointerdown taps, registers SW
   js/pick-word.mjs     # pick next word (also used by tests)
   words.json           # syllable buckets from CMUdict
   sw.js                # offline cache

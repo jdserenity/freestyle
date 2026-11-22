@@ -1,9 +1,8 @@
 :root {
   --bg: #ff6b00;
   --ink: #1a0d00;
-  --ink-soft: rgba(26, 13, 0, 0.72);
-  --btn: rgba(26, 13, 0, 0.12);
-  --btn-active: rgba(26, 13, 0, 0.22);
+  --btn: #ffffff;
+  --btn-pressed: #e8e8e8;
   --safe-bottom: env(safe-area-inset-bottom, 0px);
 }
 
@@ -30,11 +29,30 @@ html, body {
   padding: 1.5rem 1.25rem calc(1.25rem + var(--safe-bottom));
 }
 
-.word {
+.word-hit {
+  appearance: none;
+  border: 0;
   margin: 0;
+  padding: 2.5rem 2rem;
   align-self: center;
   justify-self: center;
-  max-width: 12ch;
+  max-width: min(100%, 22rem);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  border-radius: 0.5rem;
+}
+
+.word-hit:active .word,
+.word-hit.is-pressed .word {
+  transform: scale(0.97);
+  opacity: 0.85;
+}
+
+.word {
+  display: block;
+  margin: 0;
   text-align: center;
   font-family: "Archivo Black", "Archivo", sans-serif;
   font-size: clamp(2.75rem, 12vw, 5.5rem);
@@ -42,12 +60,13 @@ html, body {
   letter-spacing: -0.02em;
   word-break: break-word;
   text-wrap: balance;
+  transition: transform 80ms ease-out, opacity 80ms ease-out;
 }
 
 .controls {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.65rem;
+  gap: 1.15rem 1.25rem;
   width: min(28rem, 100%);
   justify-self: center;
 }
@@ -56,8 +75,9 @@ html, body {
   appearance: none;
   border: 0;
   margin: 0;
-  padding: 0.95rem 0.75rem;
-  border-radius: 0.35rem;
+  min-height: 3.25rem;
+  padding: 1.05rem 0.85rem;
+  border-radius: 0.45rem;
   background: var(--btn);
   color: var(--ink);
   font: inherit;
@@ -66,13 +86,19 @@ html, body {
   letter-spacing: 0.01em;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+  box-shadow: 0 1px 0 rgba(26, 13, 0, 0.12);
+  transition: transform 70ms ease-out, background-color 70ms ease-out, box-shadow 70ms ease-out;
 }
 
-.controls button:active {
-  background: var(--btn-active);
+.controls button:active,
+.controls button.is-pressed {
+  background: var(--btn-pressed);
+  transform: scale(0.96);
+  box-shadow: none;
 }
 
-.controls button:focus-visible {
+.controls button:focus-visible,
+.word-hit:focus-visible {
   outline: 2px solid var(--ink);
-  outline-offset: 2px;
+  outline-offset: 3px;
 }
