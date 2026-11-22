@@ -66,9 +66,10 @@ html, body {
 .controls {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1.15rem 1.25rem;
+  gap: 1.5rem 1.6rem;
   width: min(28rem, 100%);
   justify-self: center;
+  padding-top: 0.5rem;
 }
 
 .controls button {
