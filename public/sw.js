@@ -1,4 +1,4 @@
-const CACHE = "freestyle-v3";
+const CACHE = "freestyle-v4";
 const ASSETS = [
   "/",
   "/index.html",

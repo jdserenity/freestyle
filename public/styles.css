@@ -1,8 +1,8 @@
 :root {
   --bg: #ff6b00;
   --ink: #1a0d00;
-  --btn: #ffffff;
-  --btn-pressed: #e8e8e8;
+  --btn: #f3efe8;
+  --btn-pressed: #e4ddd2;
   --safe-bottom: env(safe-area-inset-bottom, 0px);
 }
 

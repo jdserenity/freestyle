@@ -17,21 +17,11 @@ function modeButton(target, root) {
 }
 
 function bindTap(root) {
-  // Touch/pen: act on press for snappy feel; prevent the delayed synthetic click.
+  // Visual press only — do not change the word here (avoids double-fire with click).
   root.addEventListener("pointerdown", (e) => {
-    if (e.pointerType !== "touch" && e.pointerType !== "pen") return;
+    if (e.button != null && e.button !== 0) return;
     const btn = modeButton(e.target, root);
-    if (!btn) return;
-    e.preventDefault();
-    btn.classList.add("is-pressed");
-    show(btn.dataset.mode);
-  });
-
-  // Mouse + keyboard: normal click.
-  root.addEventListener("click", (e) => {
-    const btn = modeButton(e.target, root);
-    if (!btn) return;
-    show(btn.dataset.mode);
+    if (btn) btn.classList.add("is-pressed");
   });
 
   const clear = (e) => {
@@ -41,6 +31,13 @@ function bindTap(root) {
   root.addEventListener("pointerup", clear);
   root.addEventListener("pointercancel", clear);
   root.addEventListener("pointerleave", clear);
+
+  // One word change per tap/click/keyboard activate.
+  root.addEventListener("click", (e) => {
+    const btn = modeButton(e.target, root);
+    if (!btn) return;
+    show(btn.dataset.mode);
+  });
 }
 
 async function boot() {
