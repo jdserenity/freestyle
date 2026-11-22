@@ -2,42 +2,41 @@
 
 Map of this project's codebase for the maintainer: which files do what, how data and control flow between them, where state lives. Prefer diagrams (mermaid or ASCII). Write in the first person (I, me, my).
 
-## What belongs here
-
-- File / module map: important paths and one-line roles
-- Data and control flow between those pieces
-- Where state lives (DB, files, env, memory, external services)
-- Diagrams of the above when they clarify the map
-
-## What does not belong here
-
-- Install, run, or usage instructions — those live in root `README.md` (keep that README lean)
-- Product pitch or "what this app is for" — durable product/system facts go in `scaffold/CODEMAP-LLM.md`
-- Generic tutorials, glossaries, or coaching
-
-## Example shape (replace with this project's real map)
-
-### Layout
+## Layout
 
 ```
+public/
+  index.html           # PWA shell: word + four buttons
+  styles.css           # orange full-screen layout
+  app.js               # loads words.json, wires buttons, registers SW
+  js/pick-word.mjs     # pick next word (also used by tests)
+  words.json           # syllable buckets from CMUdict
+  sw.js                # offline cache
+  manifest.webmanifest # installable app metadata
+  icons/               # orange PWA icons
 src/
-  main.ts           # entry; wires the router
-  routes/orders.ts  # HTTP handlers for orders
-  db/client.ts      # DB connection used by routes
-lib/
-  auth.ts           # session checks called from routes
+  cmudict.mjs          # parse CMUdict / syllable count / bucket
+scripts/
+  generate-words.mjs   # download CMUdict → public/words.json
+test/
+  cmudict.test.mjs
+  pick-word.test.mjs
+wrangler.jsonc         # Cloudflare Pages output dir = public/
 ```
 
-### Flow
+## Flow
 
 ```mermaid
 flowchart LR
-  Client --> routes/orders.ts
-  routes/orders.ts --> lib/auth.ts
-  routes/orders.ts --> db/client.ts
+  generate["scripts/generate-words.mjs"] --> cmudict["src/cmudict.mjs"]
+  generate --> words["public/words.json"]
+  app["public/app.js"] --> words
+  app --> pick["public/js/pick-word.mjs"]
+  app --> ui["index.html word + buttons"]
 ```
 
-### State
+## State
 
-- Order rows: Postgres `orders` table (via `db/client.ts`)
-- Session: cookie → checked in `lib/auth.ts`
+- Word lists: static `public/words.json` (bundled; no DB)
+- Current on-screen word: in-memory in `public/app.js` only
+- Offline assets: Cache Storage via `public/sw.js`

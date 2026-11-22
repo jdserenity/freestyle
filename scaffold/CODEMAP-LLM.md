@@ -21,3 +21,5 @@ Confirmed product and system facts only. No open questions. Lessons and pitfalls
 ## Deploy
 
 - Static app on Cloudflare Pages (no VPS / no server for v1).
+- `wrangler.jsonc` `pages_build_output_dir` is `public/`.
+- Service worker caches the app shell and `words.json` for offline use.

@@ -1,0 +1,24 @@
+{
+  "name": "Freestyle",
+  "short_name": "Freestyle",
+  "description": "Rhyme-seed words for freestyle practice",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#ff6b00",
+  "theme_color": "#ff6b00",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
