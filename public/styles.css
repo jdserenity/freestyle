@@ -1,0 +1,78 @@
+:root {
+  --bg: #ff6b00;
+  --ink: #1a0d00;
+  --ink-soft: rgba(26, 13, 0, 0.72);
+  --btn: rgba(26, 13, 0, 0.12);
+  --btn-active: rgba(26, 13, 0, 0.22);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Archivo", system-ui, sans-serif;
+  -webkit-text-size-adjust: 100%;
+  touch-action: manipulation;
+  overscroll-behavior: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.screen {
+  min-height: 100%;
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  padding: 1.5rem 1.25rem calc(1.25rem + var(--safe-bottom));
+}
+
+.word {
+  margin: 0;
+  align-self: center;
+  justify-self: center;
+  max-width: 12ch;
+  text-align: center;
+  font-family: "Archivo Black", "Archivo", sans-serif;
+  font-size: clamp(2.75rem, 12vw, 5.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  word-break: break-word;
+  text-wrap: balance;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+  width: min(28rem, 100%);
+  justify-self: center;
+}
+
+.controls button {
+  appearance: none;
+  border: 0;
+  margin: 0;
+  padding: 0.95rem 0.75rem;
+  border-radius: 0.35rem;
+  background: var(--btn);
+  color: var(--ink);
+  font: inherit;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.controls button:active {
+  background: var(--btn-active);
+}
+
+.controls button:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}

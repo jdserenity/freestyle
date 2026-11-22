@@ -1,6 +1,6 @@
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
-import { pickWord } from "../src/pick-word.mjs";
+import { pickWord } from "../public/js/pick-word.mjs";
 
 const words = {
   "1": ["cat", "dog", "beat"],
