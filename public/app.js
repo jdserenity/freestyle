@@ -1,13 +1,29 @@
 import { pickWord } from "./js/pick-word.mjs";
+import { wordScale } from "./js/fit-word.mjs";
 
 const wordEl = document.getElementById("word");
+const wordFit = document.getElementById("word-fit");
+const wordHit = document.querySelector(".word-hit");
 let words = null;
 let current = null;
+
+function fitWord() {
+  wordFit.style.setProperty("--s", "1");
+  const style = getComputedStyle(wordHit);
+  const maxWidth =
+    wordHit.clientWidth -
+    parseFloat(style.paddingLeft) -
+    parseFloat(style.paddingRight);
+  const s = wordScale(wordEl.scrollWidth, maxWidth);
+  wordFit.style.setProperty("--s", String(s));
+}
 
 function show(mode) {
   if (!words) return;
   current = pickWord(words, mode, current);
-  if (current) wordEl.textContent = current;
+  if (!current) return;
+  wordEl.textContent = current;
+  fitWord();
 }
 
 function modeButton(target, root) {
@@ -43,10 +59,12 @@ function bindTap(root) {
 async function boot() {
   const res = await fetch("/words.json");
   words = await res.json();
+  if (document.fonts?.ready) await document.fonts.ready;
   show("random");
 
-  bindTap(document.querySelector(".word-hit"));
+  bindTap(wordHit);
   bindTap(document.querySelector(".controls"));
+  window.addEventListener("resize", fitWord);
 
   if ("serviceWorker" in navigator) {
     try { await navigator.serviceWorker.register("/sw.js"); } catch {}

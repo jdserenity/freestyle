@@ -10,6 +10,7 @@ public/
   styles.css           # orange full-screen layout; white spaced buttons
   app.js               # loads words.json, pointerdown taps, registers SW
   js/pick-word.mjs     # pick next word (also used by tests)
+  js/fit-word.mjs      # scale factor so the word fits one line
   words.json           # syllable buckets from CMUdict
   sw.js                # offline cache
   manifest.webmanifest # installable app metadata

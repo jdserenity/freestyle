@@ -1,10 +1,11 @@
-const CACHE = "freestyle-v4";
+const CACHE = "freestyle-v5";
 const ASSETS = [
   "/",
   "/index.html",
   "/styles.css",
   "/app.js",
   "/js/pick-word.mjs",
+  "/js/fit-word.mjs",
   "/words.json",
   "/manifest.webmanifest",
   "/icons/icon-192.png",
